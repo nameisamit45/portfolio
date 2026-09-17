@@ -1,359 +1,1569 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amit Vardhan Suryadevara • Portfolio</title>
-  <!-- New, recruiter-friendly typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Amit Vardhan Suryadevara — electrical and computer engineer working across power electronics, semiconductor design, verification, physical design, and compute-in-memory research.">
+  <meta name="theme-color" content="#06080c">
+  <title>Amit Vardhan Suryadevara — Engineering Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306080c'/%3E%3Cpath d='M14 45 28 16h8l14 29h-9l-2.5-6H25.4L23 45zm14-14h8l-4-9z' fill='%23f7a928'/%3E%3C/svg%3E">
   <style>
-    :root{
-      --ink:#1a2433;
-      --muted:#5d6b82;
-      --bg:#f7fafc;
-      --card:#ffffff;
-      --stroke:#e6edf5;
-      --accent:#6c5ce7;    /* violet */
-      --accent2:#0ea5e9;   /* cyan */
-      --accent3:#22c55e;   /* green */
+    :root {
+      color-scheme: dark;
+      --bg: #06080c;
+      --bg-2: #0a0d13;
+      --panel: rgba(18, 23, 32, .88);
+      --panel-2: #111722;
+      --line: rgba(255,255,255,.11);
+      --line-bright: rgba(255,255,255,.24);
+      --text: #f5f7fb;
+      --muted: #a7afbd;
+      --dim: #737d8d;
+      --cyan: #3bc8ff;
+      --amber: #ffac32;
+      --green: #6ee7a8;
+      --purple: #aa8cff;
+      --red: #ff6d7a;
+      --max: 1480px;
+      --radius: 18px;
+      --shadow: 0 22px 80px rgba(0,0,0,.45);
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; color:var(--ink); background: var(--bg);
-      font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      line-height:1.65;
-      /* Subtle geometric background */
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      min-width: 320px;
       background:
-        radial-gradient(60rem 30rem at 10% -5%, rgba(14,165,233,.12), transparent 60%),
-        radial-gradient(60rem 30rem at 110% 10%, rgba(108,92,231,.10), transparent 60%),
-        radial-gradient(40rem 20rem at 50% 120%, rgba(34,197,94,.10), transparent 60%),
-        repeating-linear-gradient(90deg, rgba(26,36,51,.03) 0 1px, transparent 1px 40px),
-        repeating-linear-gradient(0deg, rgba(26,36,51,.02) 0 1px, transparent 1px 40px);
+        radial-gradient(1000px 540px at 76% -10%, rgba(26,155,217,.12), transparent 66%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
     }
-    /* Top nav */
-    .nav{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: saturate(1.2) blur(10px);
-      background: rgba(255,255,255,.8);
-      border-bottom:1px solid var(--stroke);
+
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: rgba(59,200,255,.28); color: #fff; }
+
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: -5rem;
+      z-index: 200;
+      padding: .75rem 1rem;
+      border-radius: 10px;
+      background: #fff;
+      color: #000;
+      font-weight: 800;
+      transition: top .2s ease;
     }
-    .nav-inner{
-      max-width:1100px; margin:auto; padding:.6rem 1rem;
-      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    .skip-link:focus { top: 1rem; }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 80;
+      height: 72px;
+      background: linear-gradient(180deg, rgba(4,6,9,.96), rgba(4,6,9,.68) 70%, transparent);
+      transition: background .25s ease, border-color .25s ease;
     }
-    .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--ink)}
-    .brand img{width:40px; height:40px; border-radius:12px; background:#fff; padding:4px; border:1px solid var(--stroke)}
-    .brand span{font-family:"Space Grotesk", sans-serif; font-weight:700; letter-spacing:.2px}
-    .links a{color:var(--ink); text-decoration:none; margin-left:1rem; font-weight:600; opacity:.9}
-    .links a:hover{color:var(--accent)}
-    header{
-      text-align:center; padding:4rem 1rem 2rem;
+    .topbar.scrolled {
+      background: rgba(6,8,12,.9);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
     }
-    header img.logo{
-      width:180px; height:180px; object-fit:cover; border-radius:22px;
-      background:#fff; padding:12px; border:1px solid var(--stroke);
-      box-shadow: 0 12px 30px rgba(33, 36, 44, .12);
+    .nav {
+      height: 100%;
+      max-width: var(--max);
+      margin: auto;
+      padding: 0 clamp(1rem, 3vw, 3rem);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
-    header h1{
-      font-family:"Space Grotesk", sans-serif; font-weight:700; font-size:2.25rem; margin:1rem 0 .25rem
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      text-decoration: none;
+      flex: 0 0 auto;
     }
-    header p.tag{max-width:880px; margin:.25rem auto 0; color:var(--muted); font-size:1.05rem}
-    .cta-row{margin-top:1rem; display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap}
-    .btn{
-      display:inline-block; padding:.65rem 1.05rem; border-radius:12px; text-decoration:none; font-weight:700;
-      border:1px solid var(--stroke); background:var(--card); color:var(--ink)
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,172,50,.5);
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(255,172,50,.18), rgba(59,200,255,.05));
+      box-shadow: inset 0 0 18px rgba(255,172,50,.08);
+      color: var(--amber);
+      font-weight: 900;
+      letter-spacing: -.08em;
     }
-    .btn:hover{border-color:var(--accent); color:var(--accent)}
-    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent2)); color:#fff; border:none}
-    .btn.primary:hover{filter:brightness(1.05)}
-    .btn.ghost{background:transparent}
-    section{max-width:1100px; margin:1rem auto; padding:1.25rem}
-    .card{
-      background:var(--card); border:1px solid var(--stroke); border-radius:18px; padding:1.25rem 1.25rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    .brand-copy { display: grid; line-height: 1.1; }
+    .brand-copy strong { font-size: .88rem; letter-spacing: .04em; }
+    .brand-copy span { margin-top: .25rem; color: var(--dim); font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(.8rem, 1.5vw, 1.4rem);
+      margin-left: auto;
     }
-    h2{
-      font-family:"Space Grotesk", sans-serif; font-weight:700; color:var(--accent);
-      margin:0 0 1rem 0; letter-spacing:.2px
+    .nav-links a {
+      color: #c8cfda;
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 680;
+      transition: color .2s ease;
     }
-    .grid{display:grid; gap:1rem}
-    @media(min-width:860px){ .grid.cols-2{grid-template-columns:1fr 1fr} .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
-    ul.clean{list-style:none; padding:0; margin:.25rem 0}
-    ul.clean li{padding:.25rem 0}
-    .project{padding:1rem; border-radius:14px; background:#fafcff; border:1px solid var(--stroke)}
-    .project h3{margin:.25rem 0 .35rem; color:#0f172a}
-    .project .meta{color:var(--muted); font-size:.95rem; margin:.15rem 0 .5rem}
-    .tag{display:inline-block; padding:.2rem .55rem; border-radius:999px; background:#f3f6fb; border:1px solid var(--stroke); margin:.15rem; font-size:.85rem}
-    .pill{
-      display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px;
-      background: #eef8ff; color:#0c4a6e; border:1px solid var(--stroke); font-weight:700; font-size:.85rem
+    .nav-links a:hover,
+    .nav-links a[aria-current="true"] { color: #fff; }
+    .nav-actions { display: flex; align-items: center; gap: .65rem; }
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
     }
-    footer{ text-align:center; padding:2rem 1rem; color:var(--muted) }
-    /* Reveal on scroll */
-    .reveal{opacity:0; transform: translateY(18px); transition: all .6s ease}
-    .reveal.in{opacity:1; transform:none}
-    /* Highlight cards */
-    .highlight{border-left:4px solid var(--accent); padding-left:1rem}
-    .metric{font-family:"Space Grotesk"; font-weight:700; font-size:1.6rem; color:var(--accent2)}
-    .metric small{font-weight:700; color:var(--muted); font-size:.9rem}
+    .icon-btn:hover { background: rgba(255,255,255,.1); border-color: var(--line-bright); transform: translateY(-1px); }
+    .icon-btn svg { width: 19px; height: 19px; }
+    .menu-toggle { display: none; }
+
+    .hero {
+      position: relative;
+      min-height: 720px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background-image: url("assets/engineering-hero.png");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+      animation: hero-breathe 18s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(4,6,9,.98) 0%, rgba(4,6,9,.92) 30%, rgba(4,6,9,.34) 67%, rgba(4,6,9,.12) 100%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 38%, rgba(4,6,9,.18) 100%);
+    }
+    @keyframes hero-breathe {
+      from { transform: scale(1.02) translate3d(0,0,0); }
+      to { transform: scale(1.075) translate3d(-.5%, -.4%, 0); }
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .16;
+      background-image:
+        linear-gradient(rgba(59,200,255,.13) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,200,255,.13) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(90deg, black, transparent 74%);
+    }
+    #signalCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .58;
+    }
+    .hero-inner {
+      width: 100%;
+      max-width: var(--max);
+      margin: auto;
+      padding: 9rem clamp(1rem, 3vw, 3rem) 5rem;
+    }
+    .hero-copy { max-width: 770px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      color: #e7ecf4;
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 31px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--amber), var(--cyan));
+      box-shadow: 0 0 15px rgba(255,172,50,.5);
+    }
+    .hero h1 {
+      max-width: 760px;
+      margin: 1rem 0 .6rem;
+      font-size: clamp(3.25rem, 7.6vw, 7.4rem);
+      line-height: .88;
+      letter-spacing: -.072em;
+      text-wrap: balance;
+    }
+    .hero h1 span { color: var(--amber); }
+    .hero-role {
+      margin: 1.15rem 0;
+      color: #e1e6ee;
+      font-size: clamp(1.1rem, 2.3vw, 1.65rem);
+      font-weight: 620;
+      letter-spacing: -.02em;
+    }
+    .hero-summary {
+      max-width: 660px;
+      margin: 0;
+      color: #b8c0cd;
+      font-size: clamp(1rem, 1.35vw, 1.14rem);
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem 1.25rem;
+      margin-top: 1.65rem;
+      color: #d4d9e1;
+      font-size: .9rem;
+      font-weight: 650;
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: .45rem; }
+    .hero-meta span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: .8rem 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(255,255,255,.07);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); border-color: var(--line-bright); }
+    .btn.primary { background: #fff; color: #06080c; border-color: #fff; }
+    .btn.primary:hover { background: #dfe6ef; }
+    .btn svg { width: 18px; height: 18px; }
+    .ticker {
+      border-block: 1px solid var(--line);
+      background: #090c11;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: .75rem 0;
+      color: #8e98a8;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track span::after { content: "◆"; margin-left: 2rem; color: var(--amber); font-size: .45rem; vertical-align: middle; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    main { display: block; }
+    .section {
+      position: relative;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem clamp(1rem, 3vw, 3rem);
+      scroll-margin-top: 72px;
+    }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.35rem;
+    }
+    .section-kicker {
+      margin: 0 0 .35rem;
+      color: var(--amber);
+      font-size: .72rem;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.3vw, 2.9rem);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+    .section-note { max-width: 540px; margin: .55rem 0 0; color: var(--muted); }
+    .rail-actions { display: flex; gap: .5rem; flex: 0 0 auto; }
+    .rail-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+      transition: background .2s ease, opacity .2s ease;
+    }
+    .rail-btn:hover { background: rgba(255,255,255,.1); }
+    .rail-btn svg { width: 19px; height: 19px; }
+
+    .rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(300px, 30vw);
+      gap: 1rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline mandatory;
+      scrollbar-width: none;
+      padding: .2rem max(0px, calc((100vw - var(--max)) / 2 + clamp(1rem, 3vw, 3rem))) 2rem;
+      scroll-padding-inline: max(0px, calc((100vw - var(--max)) / 2 + clamp(1rem, 3vw, 3rem)));
+    }
+    .rail::-webkit-scrollbar { display: none; }
+    .edge-section { max-width: none; padding-inline: 0; }
+    .edge-section > .section-head,
+    .edge-section > .filters {
+      width: min(calc(100% - clamp(2rem, 6vw, 6rem)), var(--max));
+      margin-inline: auto;
+    }
+    .story-card {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #111720;
+      box-shadow: 0 12px 35px rgba(0,0,0,.22);
+      cursor: pointer;
+      text-align: left;
+      isolation: isolate;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .25s ease, box-shadow .35s ease;
+    }
+    .story-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 78% 16%, var(--glow, rgba(59,200,255,.35)), transparent 25%),
+        linear-gradient(145deg, var(--card-a, #172536), var(--card-b, #0b0e14) 64%);
+    }
+    .story-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(0deg, rgba(4,6,9,.98) 2%, rgba(4,6,9,.2) 78%),
+        repeating-linear-gradient(90deg, transparent 0 32px, rgba(255,255,255,.022) 32px 33px);
+    }
+    .story-card:hover,
+    .story-card:focus-visible {
+      transform: translateY(-7px) scale(1.015);
+      border-color: var(--line-bright);
+      box-shadow: 0 28px 60px rgba(0,0,0,.42);
+      outline: none;
+    }
+    .card-art {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      opacity: .88;
+    }
+    .chip-art {
+      position: absolute;
+      right: -12%;
+      top: 9%;
+      width: 67%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14%;
+      transform: rotate(-10deg);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.12), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.07) 0 1px, transparent 1px 14px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px 14px),
+        rgba(5,9,15,.72);
+      box-shadow: 0 0 50px var(--glow, rgba(59,200,255,.25));
+    }
+    .chip-art::before, .chip-art::after {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10%;
+    }
+    .chip-art::after { inset: 34%; background: rgba(255,172,50,.13); box-shadow: 0 0 32px rgba(255,172,50,.15); }
+    .wave-art {
+      position: absolute;
+      right: -8%;
+      top: 16%;
+      width: 82%;
+      height: 38%;
+      opacity: .62;
+      background:
+        linear-gradient(115deg, transparent 0 8%, var(--accent, var(--cyan)) 8.2% 8.7%, transparent 9% 22%, var(--accent, var(--cyan)) 22.2% 22.8%, transparent 23% 38%, var(--accent, var(--cyan)) 38.2% 38.8%, transparent 39% 55%, var(--accent, var(--cyan)) 55.2% 55.8%, transparent 56%);
+      filter: drop-shadow(0 0 8px var(--accent, var(--cyan)));
+      transform: skewY(-5deg);
+    }
+    .card-content {
+      position: absolute;
+      inset: auto 1.3rem 1.2rem;
+      z-index: 1;
+    }
+    .card-topline {
+      position: absolute;
+      top: 1.15rem;
+      left: 1.2rem;
+      right: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .6rem;
+    }
+    .episode {
+      color: rgba(255,255,255,.66);
+      font-size: .68rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .card-open {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(0,0,0,.32);
+      transition: transform .25s ease, background .25s ease;
+    }
+    .story-card:hover .card-open { transform: rotate(45deg); background: rgba(255,255,255,.13); }
+    .card-open svg { width: 16px; height: 16px; }
+    .story-card h3 { margin: 0; font-size: clamp(1.32rem, 2vw, 1.75rem); line-height: 1.03; letter-spacing: -.035em; }
+    .card-role { margin: .5rem 0; color: #b6bfcb; font-size: .86rem; font-weight: 650; }
+    .card-blurb {
+      display: -webkit-box;
+      margin: .65rem 0 0;
+      overflow: hidden;
+      color: #8f99a8;
+      font-size: .88rem;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: .42rem; margin-top: .85rem; }
+    .chip {
+      padding: .27rem .52rem;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.055);
+      color: #c5ccd6;
+      font-size: .68rem;
+      font-weight: 720;
+    }
+
+    .filters {
+      display: flex;
+      gap: .55rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-bottom: 1.25rem;
+      padding-bottom: .25rem;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter {
+      flex: 0 0 auto;
+      min-height: 38px;
+      padding: .5rem .85rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 750;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .filter:hover { color: #fff; border-color: var(--line-bright); }
+    .filter.active { background: #f3f5f8; border-color: #f3f5f8; color: #090b10; }
+    .story-card.is-hidden { display: none; }
+
+    .publication {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      min-height: 480px;
+      align-items: center;
+      padding: clamp(1.5rem, 4vw, 4rem);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background:
+        radial-gradient(800px 380px at 100% 0, rgba(170,140,255,.18), transparent 60%),
+        radial-gradient(600px 380px at 10% 100%, rgba(59,200,255,.1), transparent 65%),
+        #0c1017;
+      box-shadow: var(--shadow);
+    }
+    .pub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      width: fit-content;
+      padding: .4rem .62rem;
+      border: 1px solid rgba(170,140,255,.34);
+      border-radius: 999px;
+      color: #d7caff;
+      background: rgba(170,140,255,.08);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .publication h3 {
+      max-width: 850px;
+      margin: 1rem 0;
+      font-size: clamp(2rem, 4.2vw, 4.3rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+    .pub-copy { max-width: 730px; color: #a9b2c0; }
+    .pub-authors { margin: 1.2rem 0; color: #d8dde6; font-size: .86rem; }
+    .pub-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .pub-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+    .pub-metric {
+      min-height: 125px;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+    }
+    .pub-metric strong { display: block; color: var(--cyan); font-size: clamp(1.65rem, 3vw, 2.5rem); letter-spacing: -.05em; }
+    .pub-metric span { color: var(--dim); font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; }
+
+    .signal-chain {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--line);
+    }
+    .stack-card {
+      min-height: 260px;
+      padding: 1.35rem;
+      background: #0d1118;
+      transition: background .25s ease;
+    }
+    .stack-card:hover { background: #121824; }
+    .stack-index { color: var(--dim); font-size: .72rem; font-weight: 850; letter-spacing: .12em; }
+    .stack-card h3 { margin: 2.5rem 0 .8rem; font-size: 1.2rem; }
+    .stack-list { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .stack-list span {
+      padding: .32rem .52rem;
+      border-radius: 7px;
+      background: rgba(255,255,255,.05);
+      color: #aab3c1;
+      font-size: .77rem;
+    }
+
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(2rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .journey-intro {
+      position: sticky;
+      top: 105px;
+      padding: 1.7rem;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(255,172,50,.09), rgba(59,200,255,.035));
+    }
+    .journey-intro p { color: var(--muted); }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 13px;
+      bottom: 20px;
+      width: 1px;
+      background: linear-gradient(var(--amber), var(--cyan), rgba(255,255,255,.08));
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 2.8rem 3.25rem;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: .35rem;
+      width: 13px;
+      height: 13px;
+      border: 3px solid #0b0e14;
+      border-radius: 50%;
+      background: var(--dot, var(--amber));
+      box-shadow: 0 0 14px var(--dot, var(--amber));
+    }
+    .timeline-time { color: var(--dim); font-size: .72rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .timeline-item h3 { margin: .3rem 0 .25rem; font-size: 1.28rem; }
+    .timeline-role { margin: 0; color: #c7ced8; font-size: .9rem; font-weight: 700; }
+    .timeline-desc { margin: .55rem 0 0; color: var(--muted); font-size: .9rem; }
+
+    .award-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .award {
+      min-height: 220px;
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(150deg, rgba(255,172,50,.08), rgba(255,255,255,.025));
+    }
+    .award-num { color: var(--amber); font-size: 2.8rem; font-weight: 900; letter-spacing: -.07em; }
+    .award h3 { margin: .8rem 0 .45rem; font-size: 1.08rem; }
+    .award p { margin: 0; color: var(--muted); font-size: .86rem; }
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 2rem;
+      align-items: end;
+      padding: clamp(2rem, 5vw, 5rem);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        radial-gradient(640px 360px at 95% 20%, rgba(59,200,255,.16), transparent 65%),
+        linear-gradient(145deg, #111721, #090c11);
+    }
+    .contact::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -190px;
+      top: -210px;
+      border: 1px solid rgba(59,200,255,.22);
+      border-radius: 50%;
+      box-shadow: 0 0 0 55px rgba(59,200,255,.025), 0 0 0 110px rgba(59,200,255,.015);
+    }
+    .contact h2 { max-width: 760px; font-size: clamp(2.4rem, 5vw, 5.3rem); }
+    .contact p { max-width: 650px; color: var(--muted); }
+    .contact-links { position: relative; display: grid; gap: .65rem; justify-items: stretch; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.035);
+      text-decoration: none;
+      font-weight: 750;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .contact-link:hover { background: rgba(255,255,255,.08); border-color: var(--line-bright); transform: translateX(3px); }
+    .contact-link span { color: var(--dim); font-size: .73rem; font-weight: 700; }
+
+    footer {
+      max-width: var(--max);
+      margin: auto;
+      padding: 2rem clamp(1rem, 3vw, 3rem) 3rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--dim);
+      font-size: .78rem;
+    }
+    footer a { text-decoration: none; color: #aab2bf; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(12px);
+    }
+    .modal.open { display: flex; }
+    .modal-panel {
+      width: min(880px, 100%);
+      max-height: min(820px, calc(100vh - 2rem));
+      overflow-y: auto;
+      border: 1px solid var(--line-bright);
+      border-radius: 22px;
+      background:
+        radial-gradient(600px 300px at 100% 0, rgba(59,200,255,.11), transparent 60%),
+        #0b0f16;
+      box-shadow: 0 30px 100px rgba(0,0,0,.75);
+    }
+    .modal-hero { position: relative; min-height: 220px; padding: 2rem; border-bottom: 1px solid var(--line); overflow: hidden; }
+    .modal-hero::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(120deg, rgba(255,172,50,.08), transparent 50%, rgba(59,200,255,.12)); }
+    .modal-hero > * { position: relative; z-index: 1; }
+    .modal-close { position: absolute; z-index: 3; right: 1rem; top: 1rem; }
+    .modal-kicker { color: var(--amber); font-size: .72rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    .modal h2 { max-width: 740px; margin: 2.4rem 0 .6rem; font-size: clamp(2rem, 5vw, 4rem); line-height: .98; letter-spacing: -.055em; }
+    .modal-subtitle { color: #b9c1cd; font-weight: 650; }
+    .modal-body { padding: 2rem; }
+    .modal-body p { margin: 0; color: #b1bac8; font-size: 1rem; white-space: pre-line; }
+    .modal-impact {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .8rem;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-left: 3px solid var(--cyan);
+      background: rgba(59,200,255,.05);
+    }
+    .modal-impact strong { color: var(--cyan); }
+    .modal-tags { margin-top: 1.5rem; }
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 140;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 10vh 1rem 1rem;
+      background: rgba(0,0,0,.82);
+      backdrop-filter: blur(16px);
+    }
+    .search-overlay.open { display: flex; }
+    .search-box {
+      width: min(740px, 100%);
+      overflow: hidden;
+      border: 1px solid var(--line-bright);
+      border-radius: 18px;
+      background: #0d1118;
+      box-shadow: var(--shadow);
+    }
+    .search-input-wrap { display: flex; align-items: center; gap: .8rem; padding: 1rem; border-bottom: 1px solid var(--line); }
+    .search-input-wrap svg { width: 22px; color: var(--dim); }
+    #searchInput {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 1.05rem;
+    }
+    .search-hint { flex: 0 0 auto; padding: .25rem .42rem; border: 1px solid var(--line); border-radius: 6px; color: var(--dim); font-size: .68rem; }
+    .search-results { max-height: 55vh; overflow-y: auto; padding: .5rem; }
+    .search-result {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .85rem;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+    .search-result:hover, .search-result:focus-visible { background: rgba(255,255,255,.065); outline: none; }
+    .search-result strong { display: block; font-size: .9rem; }
+    .search-result span { color: var(--dim); font-size: .75rem; }
+    .search-empty { padding: 1.2rem; color: var(--muted); }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 1040px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: grid; }
+      .nav-links.mobile-open {
+        position: absolute;
+        display: grid;
+        top: 68px;
+        left: 1rem;
+        right: 1rem;
+        gap: .35rem;
+        padding: .75rem;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(10,13,19,.98);
+        box-shadow: var(--shadow);
+      }
+      .nav-links.mobile-open a { padding: .7rem; }
+      .signal-chain { grid-template-columns: repeat(2, 1fr); }
+      .journey-grid { grid-template-columns: 1fr; }
+      .journey-intro { position: static; }
+      .award-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar { height: 64px; }
+      .nav { padding-inline: 1rem; gap: .8rem; }
+      .brand-copy { display: none; }
+      .hero { min-height: 700px; }
+      .hero-inner { padding: 8rem 1rem 4.5rem; }
+      .hero::before { background-position: 60% center; opacity: .72; }
+      .hero::after {
+        background:
+          linear-gradient(90deg, rgba(4,6,9,.96), rgba(4,6,9,.57)),
+          linear-gradient(0deg, var(--bg), transparent 50%);
+      }
+      .hero h1 { font-size: clamp(3.25rem, 17vw, 5.7rem); }
+      .section { padding: 4rem 1rem; }
+      .edge-section > .section-head,
+      .edge-section > .filters { width: calc(100% - 2rem); }
+      .rail { grid-auto-columns: minmax(282px, 83vw); padding-inline: 1rem; scroll-padding-inline: 1rem; }
+      .story-card { min-height: 400px; }
+      .publication { grid-template-columns: 1fr; }
+      .signal-chain { grid-template-columns: 1fr; }
+      .award-grid { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to work</a>
 
-  <!-- Top navigation -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="#top">
-        <img src="Screenshot 2025-08-12 235008.png" alt="Amit Vardhan Logo">
-        <span>AVS Portfolio</span>
+  <header class="topbar" id="topbar">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Amit Vardhan Suryadevara, home">
+        <span class="brand-mark" aria-hidden="true">AV</span>
+        <span class="brand-copy"><strong>AMIT VARDHAN</strong><span>Engineering portfolio</span></span>
       </a>
-      <div class="links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#resume">Resume</a>
+        <a href="#publication">Publication</a>
+        <a href="#skills">Toolbox</a>
+        <a href="#journey">Journey</a>
         <a href="#contact">Contact</a>
       </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <header id="top" class="reveal in">
-    <img class="logo" src="Screenshot 2025-08-12 235008.png" alt="Amit Vardhan Logo">
-    <h1>Hello, I'm Amit Vardhan Suryadevara</h1>
-    <p class="tag">
-      Electrical & VLSI engineer focused on high‑performance, energy‑efficient systems across circuit design,
-      hardware modeling, and electromechanical integration.
-    </p>
-    <div class="cta-row">
-      <a class="btn primary" href="mailto:amitdvea45@gmail.com">Email Me</a>
-      <a class="btn" href="https://github.com/nameisamit45" target="_blank" rel="noopener">GitHub Profile</a>
-      <a class="btn ghost" href="#resume">Download Résumé</a>
-    </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="searchOpen" aria-label="Search portfolio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
   </header>
 
-  <!-- About -->
-  <section id="about" class="reveal">
-    <div class="card">
-      <h2>About</h2>
-      <p>
-        I am a motivated Electrical and VLSI Engineer with expertise in circuit design, hardware modeling, and electromechanical systems.
-        I thrive on transforming complex ideas into efficient, reliable hardware. My goal is to contribute to teams building
-        innovative silicon and embedded systems where performance and energy efficiency matter. I bring a hands-on prototyping
-        mindset, clear communication, and a bias for collaboration—aiming to create measurable impact in organizations that value
-        rigor, iteration, and shipping real products.
-      </p>
-      <div class="pill">Actively seeking: VLSI / Hardware / Embedded roles</div>
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <canvas id="signalCanvas" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Electrical &amp; Computer Engineer</span>
+        <h1 id="hero-title">Amit Vardhan <span>Suryadevara.</span></h1>
+        <p class="hero-role">Power electronics × silicon design × verification</p>
+        <p class="hero-summary">I turn device behavior, simulation data, and RTL into systems engineers can measure, debug, and trust—from automotive SiC power modules to compute-in-memory circuits.</p>
+        <div class="hero-meta">
+          <span>M.S. ECE, Purdue · GPA 3.86 · Dec 2026</span>
+          <span>onsemi · Product Design Intern</span>
+          <span>Indianapolis, IN</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#experience">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Explore my work
+          </a>
+          <a class="btn" href="mailto:amitdeva45@gmail.com">Connect with me</a>
+          <a class="btn" href="https://nameisamit45.github.io/portfolio/Amit_Vardhan_Suryadevara_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills" class="reveal">
-    <div class="card">
-      <h2>Skills</h2>
-      <div class="grid cols-3">
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Power modules</span><span>Double-pulse testing</span><span>Thermal impedance</span><span>SystemVerilog</span><span>Functional verification</span><span>Physical design</span><span>Compute in memory</span><span>Python automation</span>
+      <span>Power modules</span><span>Double-pulse testing</span><span>Thermal impedance</span><span>SystemVerilog</span><span>Functional verification</span><span>Physical design</span><span>Compute in memory</span><span>Python automation</span>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="section edge-section reveal" id="experience" aria-labelledby="experience-title">
+      <div class="section-head">
         <div>
-          <h3>Analog &amp; Digital Design</h3>
-          <ul class="clean">
-            <li>Cadence Virtuoso, SPICE</li>
-            <li>Verilog/VHDL</li>
-            <li>KiCad 6</li>
-            <li>Layout Optimization</li>
-          </ul>
+          <p class="section-kicker">Now streaming</p>
+          <h2 id="experience-title">Experience stories</h2>
+          <p class="section-note">Select a story for the engineering problem, method, validation, and result.</p>
         </div>
+        <div class="rail-actions" aria-label="Experience carousel controls">
+          <button class="rail-btn" data-rail="experienceRail" data-dir="-1" aria-label="Previous experience">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="rail-btn" data-rail="experienceRail" data-dir="1" aria-label="Next experience">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="rail" id="experienceRail">
+        <button class="story-card searchable" style="--card-a:#192a35;--card-b:#080c12;--glow:rgba(59,200,255,.4);--accent:#3bc8ff"
+          data-category="experience power thermal automation"
+          data-kicker="onsemi · Product Design Intern · Jan–Aug 2026"
+          data-title="Automotive Power Modules"
+          data-subtitle="Scottsdale, Arizona · SiC switching, package simulation, and compact thermal models"
+          data-body="Worked across the power-module simulation chain: package geometry and interconnect edits, simulation preparation, waveform analytics, compact thermal modeling, and an engineer-facing junction-temperature estimator.\n\nBuilt a Python pipeline around SIMetrix double-pulse-test results to resolve raw hierarchical vectors, align time axes, derive VGS/VDS/current/power, integrate switching energy, measure switching slopes, assess die-current sharing, and export repeatable CSV outputs.\n\nFor thermal analysis, compared Foster model orders, explored Foster-to-Cauer conversion, modeled flow-dependent self/cross/NTC response, and helped package the method into reusable calibration profiles and plots."
+          data-impact="A held-out validation point reached about 0.24% worst-case junction-temperature error; steady self-tests were within 0.123 K across 1–15 LPM."
+          data-tags="SIMetrix,Python,NumPy,SciPy,Ansys Q3D,MFIT,SolidWorks,AutoCAD">
+          <span class="card-topline"><span class="episode">01 · Featured</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>Automotive Power Modules</h3>
+            <span class="card-role">onsemi · Product Design Intern · 2026</span>
+            <span class="card-blurb">SiC DPT automation, thermal RC modeling, package CAD, flow-aware junction estimation, and reusable engineering tools.</span>
+            <span class="chips"><span class="chip">Power Electronics</span><span class="chip">Python</span><span class="chip">Thermal</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#2d2418;--card-b:#0d0a08;--glow:rgba(255,172,50,.4);--accent:#ffac32"
+          data-category="experience automation verification power"
+          data-kicker="onsemi · Electrical Analysis"
+          data-title="DPT Measurement Automation"
+          data-subtitle="Repeatable switching metrics from raw transient vectors"
+          data-body="Designed a reproducible workflow for double-pulse-test analysis inside the SIMetrix embedded Python environment. The pipeline selected transient groups, resolved raw hierarchical node names, validated arrays, aligned mismatched time bases, and derived device-level electrical waveforms.\n\nImplemented switching-energy integration from instantaneous VDS×ID power, event-window measurement, 10–90% style slope calculations, per-die current inspection, and automated CSV export. I also documented fragile cases such as sign convention, ringing, shifted pulses, threshold choice, and nonmatching event bounds."
+          data-impact="A confirmed run processed 7,110 time points across 9,625 available vectors and produced reviewable device-level outputs."
+          data-tags="SIMetrix,Python,DPT,Eon/Eoff,di/dt,dv/dt,IEC 60747-9">
+          <span class="card-topline"><span class="episode">02 · Deep dive</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="wave-art"></span></span>
+          <span class="card-content">
+            <h3>DPT Measurement Automation</h3>
+            <span class="card-role">onsemi · SIMetrix + Python</span>
+            <span class="card-blurb">From raw switching waveforms to consistent energy, slope, and current-sharing measurements.</span>
+            <span class="chips"><span class="chip">Eon / Eoff</span><span class="chip">di/dt</span><span class="chip">dv/dt</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#182a24;--card-b:#080d0b;--glow:rgba(110,231,168,.35);--accent:#6ee7a8"
+          data-category="experience thermal modeling automation"
+          data-kicker="onsemi · Thermal Modeling"
+          data-title="NTC-to-Junction Estimator"
+          data-subtitle="Flow-aware transient temperature estimation with engineering handoff"
+          data-body="Built and validated a model that estimates maximum high-side junction temperature from the slower NTC sensor signal. The workflow separates the fast junction response from the delayed sensor response, normalizes temperature rise by applied power, and adapts the correction using coolant-flow-dependent fits.\n\nCreated a Python/Jupyter interface for steady and transient inputs, module calibration profiles, plots, report parsing, reference comparisons, and JSON-based reuse. Validation treated excluded flow cases as complete trajectories rather than leaking their points into calibration."
+          data-impact="Held-out worst-case error was approximately 0.24% at one unseen point; the flow estimator targeted ±0.1 LPM within its calibrated operating range."
+          data-tags="Python,Jupyter,SciPy,Foster RC,NTC,LOFO,Curve fitting">
+          <span class="card-topline"><span class="episode">03 · Tool</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>NTC-to-Junction Estimator</h3>
+            <span class="card-role">onsemi · Python/Jupyter</span>
+            <span class="card-blurb">A reusable, flow-aware observer connecting sensor temperature to hidden junction behavior.</span>
+            <span class="chips"><span class="chip">0.24% error</span><span class="chip">Foster RC</span><span class="chip">LOFO</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#30202b;--card-b:#0c080b;--glow:rgba(255,109,122,.35);--accent:#ff6d7a"
+          data-category="experience power mechanical cad"
+          data-kicker="Modine Manufacturing · Jun–Aug 2024"
+          data-title="Electromechanical Design"
+          data-subtitle="Power distribution, capacitor behavior, and reliability analysis"
+          data-body="Supported electromechanical engineering work involving capacitor behavior, power-distribution components, design optimization, and failure-mode analysis. The role connected component-level reasoning with system efficiency and reliability targets.\n\nWorked with engineering drawings and simulation/analysis tools to examine design decisions and communicate findings in a practical manufacturing context."
+          data-impact="Résumé-reported outcomes included 15% improved energy efficiency and 20% longer component lifespan for the studied design changes."
+          data-tags="Power Distribution,Capacitors,Failure Analysis,AutoCAD,SolidWorks,MATLAB">
+          <span class="card-topline"><span class="episode">04 · Industry</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="wave-art"></span></span>
+          <span class="card-content">
+            <h3>Electromechanical Design</h3>
+            <span class="card-role">Modine Manufacturing · Intern · 2024</span>
+            <span class="card-blurb">Component optimization and failure-mode analysis for efficient, reliable power-distribution hardware.</span>
+            <span class="chips"><span class="chip">+15% efficiency</span><span class="chip">+20% lifespan</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#242033;--card-b:#09080d;--glow:rgba(170,140,255,.38);--accent:#aa8cff"
+          data-category="experience teaching education"
+          data-kicker="Purdue University · 2024–2026"
+          data-title="Teaching & Technical Mentorship"
+          data-subtitle="UTA, graduate teaching assistant, and grader across core ECE courses"
+          data-body="Supported students across ECE 30100, ECE 20001, ECE 20501, and ECE 20502 through office hours, recitations, grading, lab guidance, and circuit-debugging support. The work spans undergraduate teaching-assistant, graduate teaching-assistant, and grader roles.\n\nFocused on breaking down circuit analysis, electronics, signals, and hardware-lab problems into clear steps while preserving technical rigor and consistent evaluation."
+          data-impact="Recognized with the Dave & Marsha Meyer ECE Undergraduate Teaching Assistant Award for 2024–2025."
+          data-tags="Teaching,Circuit Analysis,Electronics,Lab Debugging,Assessment">
+          <span class="card-topline"><span class="episode">05 · Leadership</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>Teaching &amp; Mentorship</h3>
+            <span class="card-role">Purdue ECE · 2024–2026</span>
+            <span class="card-blurb">Helping students build durable intuition across circuits, electronics, signals, and lab debugging.</span>
+            <span class="chips"><span class="chip">GTA</span><span class="chip">UTA</span><span class="chip">Grader</span></span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section edge-section reveal" id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
         <div>
-          <h3>Programming &amp; Tools</h3>
-          <ul class="clean">
-            <li>Python, C/C++, MATLAB, Shell</li>
-            <li>ModelSim, LABVIEW</li>
-          </ul>
+          <p class="section-kicker">Choose a channel</p>
+          <h2 id="projects-title">Engineering projects</h2>
+          <p class="section-note">Filter the catalog, then open any project for the complete technical story.</p>
         </div>
+        <div class="rail-actions" aria-label="Project carousel controls">
+          <button class="rail-btn" data-rail="projectRail" data-dir="-1" aria-label="Previous project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="rail-btn" data-rail="projectRail" data-dir="1" aria-label="Next project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="filter active" data-filter="all">All work</button>
+        <button class="filter" data-filter="verification">Verification</button>
+        <button class="filter" data-filter="silicon">Silicon</button>
+        <button class="filter" data-filter="physical">Physical design</button>
+        <button class="filter" data-filter="research">Research</button>
+        <button class="filter" data-filter="embedded">Embedded</button>
+      </div>
+      <div class="rail" id="projectRail">
+        <button class="story-card searchable" style="--card-a:#142536;--card-b:#080c12;--glow:rgba(59,200,255,.42);--accent:#3bc8ff"
+          data-category="project verification rtl systemverilog"
+          data-kicker="RTL Design & Verification"
+          data-title="Pipelined CPU Core"
+          data-subtitle="SystemVerilog · Xcelium/SimVision · Python/Tcl regression"
+          data-body="Designed and verified pipelined-CPU RTL using directed and constrained-random stimulus, self-checking testbench structure, scoreboard-based result comparison, and temporal assertions around hazard and forwarding behavior.\n\nUsed Python and Tcl to automate simulation regressions and preserve repeatable debug context. Assertion and scoreboard failures were traced back through the RTL control/data path using waveforms and simulator diagnostics."
+          data-impact="The project demonstrates the complete debug loop: stimulate, predict, detect the first divergence, isolate the RTL cause, rerun, and regress."
+          data-tags="SystemVerilog,Xcelium,SimVision,SVA,Scoreboard,Python,Tcl">
+          <span class="card-topline"><span class="episode">Verification · 01</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="wave-art"></span></span>
+          <span class="card-content">
+            <h3>Pipelined CPU Core</h3>
+            <span class="card-role">RTL design + self-checking verification</span>
+            <span class="card-blurb">Directed and constrained-random tests, scoreboards, SVA, and automated regression around pipeline hazards.</span>
+            <span class="chips"><span class="chip">SystemVerilog</span><span class="chip">SVA</span><span class="chip">Python/Tcl</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#251f38;--card-b:#0a080f;--glow:rgba(170,140,255,.4);--accent:#aa8cff"
+          data-category="project verification systemverilog bus"
+          data-kicker="UVM-Style Verification"
+          data-title="Serial Bus Interface"
+          data-subtitle="Object-oriented SystemVerilog testbench architecture"
+          data-body="Built a UVM-style environment in SystemVerilog using transaction objects, a driver, monitor, scoreboard, constrained-random stimulus, functional coverage, and protocol assertions.\n\nThe environment separates stimulus generation from observation and checking. Transactions provide the abstraction layer, the monitor reconstructs observed behavior, the scoreboard compares it with the expected model, and assertions enforce legal bus timing and sequencing."
+          data-impact="The architecture supports reusable, checkable tests instead of waveform-only pass/fail judgment."
+          data-tags="SystemVerilog,OOP,Driver,Monitor,Scoreboard,Coverage,Assertions">
+          <span class="card-topline"><span class="episode">Verification · 02</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>Serial Bus Interface</h3>
+            <span class="card-role">UVM-style OOP environment</span>
+            <span class="card-blurb">Reusable driver, monitor, transaction, scoreboard, coverage, and protocol-assertion structure.</span>
+            <span class="chips"><span class="chip">OOP</span><span class="chip">Coverage</span><span class="chip">Assertions</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#192822;--card-b:#080d0b;--glow:rgba(110,231,168,.36);--accent:#6ee7a8"
+          data-category="project physical silicon sta"
+          data-kicker="RTL-to-GDSII Flow"
+          data-title="Physical Design & STA"
+          data-subtitle="Synopsys Design Compiler · Cadence Innovus · PrimeTime"
+          data-body="Took a digital block through a guided implementation flow: logic synthesis and mapping, floorplanning, placement, clock-tree synthesis, routing, RC extraction, and static timing analysis.\n\nUsed Design Compiler for synthesis, Innovus for implementation, and PrimeTime for post-extraction timing. Reviewed setup and hold reports in terms of launch/capture points, arrival time, required time, slack, cell delay, interconnect delay, and clock behavior."
+          data-impact="Built practical understanding of how constraints and interconnect move a design from RTL intent to implemented timing behavior."
+          data-tags="Design Compiler,Innovus,PrimeTime,CTS,Routing,RC Extraction,STA">
+          <span class="card-topline"><span class="episode">Physical · 03</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>Physical Design &amp; STA</h3>
+            <span class="card-role">RTL → synthesis → route → timing</span>
+            <span class="card-blurb">A complete guided digital implementation flow with post-route parasitics and setup/hold analysis.</span>
+            <span class="chips"><span class="chip">Innovus</span><span class="chip">PrimeTime</span><span class="chip">STA</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#2e2517;--card-b:#0d0b07;--glow:rgba(255,172,50,.38);--accent:#ffac32"
+          data-category="project silicon analog digital cadence"
+          data-kicker="45 nm CMOS"
+          data-title="8×8 Dadda Multiplier"
+          data-subtitle="Transistor-level arithmetic design in Cadence Virtuoso"
+          data-body="Implemented an 8×8 Dadda multiplier using 4:2 compressors, full adders, and half adders in a 45 nm CMOS flow. The work included schematic-level construction, transistor-level simulation, layout-oriented verification, timing/power analysis, and stress characterization.\n\nThe reduction structure minimizes the number of sequential compression stages compared with a straightforward array while preserving correct partial-product summation."
+          data-impact="Measured design figures: 2,874 transistors, 500 MHz operating point, 12.35 µW power, 1.7 ns delay, and characterization up to a 2 GHz stress condition."
+          data-tags="Cadence Virtuoso,45 nm CMOS,4:2 Compressor,Post-layout,Power,Timing">
+          <span class="card-topline"><span class="episode">Silicon · 04</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>8×8 Dadda Multiplier</h3>
+            <span class="card-role">Cadence Virtuoso · 45 nm CMOS</span>
+            <span class="card-blurb">A transistor-level multiplier built around compressor-based partial-product reduction.</span>
+            <span class="chips"><span class="chip">2,874 transistors</span><span class="chip">1.7 ns</span><span class="chip">12.35 µW</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#142c2c;--card-b:#071010;--glow:rgba(59,200,255,.4);--accent:#3bc8ff"
+          data-category="project research silicon memristor analog"
+          data-kicker="IEEE Research · 7 nm"
+          data-title="Memristor-CMOS Sobel Engine"
+          data-subtitle="Compute-in-memory edge detection with programmable conductance weights"
+          data-body="Designed and simulated a hybrid ferroelectric-memristor/7 nm CMOS edge-detection engine. Two 3×3 crossbars perform analog horizontal and vertical convolution; a compact differential stage creates a signed edge-indicator signal for low-voltage thresholding.\n\nThe work remaps canonical Sobel conductance states to improve bitline separation while preserving the directional sign pattern. It also frames the tradeoffs honestly: the result is a nominal pre-layout read-path study, not a full post-layout or variation-qualified product."
+          data-impact="At 0.8 V, simulation produced about 70–110 mV analog swing, 175 µW transient-average engine power, ~160 nW subtractor power, and ~2.2 ns read latency."
+          data-tags="Cadence Virtuoso,Memristors,7 nm FinFET,Analog MAC,Sobel,Compute-in-Memory">
+          <span class="card-topline"><span class="episode">Research · 05</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="wave-art"></span></span>
+          <span class="card-content">
+            <h3>Memristor-CMOS Sobel Engine</h3>
+            <span class="card-role">IEEE research · Compute in memory</span>
+            <span class="card-blurb">Programmable 3×3 analog convolution with a compact 7 nm CMOS readout path.</span>
+            <span class="chips"><span class="chip">175 µW</span><span class="chip">2.2 ns</span><span class="chip">0.8 V</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#1b2436;--card-b:#080b12;--glow:rgba(59,200,255,.3);--accent:#3bc8ff"
+          data-category="project embedded pcb"
+          data-kicker="Embedded Hardware"
+          data-title="Custom STM32 PCB"
+          data-subtitle="STM32F103C8T6 · KiCad 6 · STM32CubeIDE"
+          data-body="Designed a custom two-layer STM32F103C8T6 board in KiCad with USB-C connectivity, SWD programming/debug, and exposed GPIO, I²C, and SPI interfaces.\n\nDeveloped the schematic and routed board, validated the design with DRC, prepared fabrication outputs including Gerbers and pick-and-place data, and configured/debugged firmware with STM32CubeIDE."
+          data-impact="The result was a fabrication-ready board package connecting schematic decisions, layout constraints, manufacturing files, and firmware bring-up."
+          data-tags="STM32F103C8T6,KiCad 6,USB-C,SWD,I2C,SPI,STM32CubeIDE">
+          <span class="card-topline"><span class="episode">Embedded · 06</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>Custom STM32 PCB</h3>
+            <span class="card-role">KiCad · STM32CubeIDE · board bring-up</span>
+            <span class="card-blurb">A two-layer microcontroller board taken from schematic through routing and fabrication outputs.</span>
+            <span class="chips"><span class="chip">USB-C</span><span class="chip">SWD</span><span class="chip">DRC clean</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#30241c;--card-b:#0d0907;--glow:rgba(255,172,50,.35);--accent:#ffac32"
+          data-category="project embedded robotics"
+          data-kicker="Embedded Systems"
+          data-title="Gesture-Controlled Car"
+          data-subtitle="Arduino · MPU6050 · NRF24L01+ · C++"
+          data-body="Built a wireless vehicle controlled by hand-gesture IMU data. The transmitter interprets MPU6050 motion data and sends commands over an NRF24L01+ link; the vehicle converts those commands into motor PWM behavior.\n\nAdded obstacle-avoidance logic and LED feedback, integrating sensing, RF communication, embedded control, and electromechanical motion."
+          data-impact="The project demonstrates end-to-end sensor-to-actuator integration across two embedded nodes."
+          data-tags="Arduino,MPU6050,NRF24L01+,C++,PWM,Wireless Control">
+          <span class="card-topline"><span class="episode">Embedded · 07</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="wave-art"></span></span>
+          <span class="card-content">
+            <h3>Gesture-Controlled Car</h3>
+            <span class="card-role">Wireless embedded control</span>
+            <span class="card-blurb">IMU gestures translated into RF commands, PWM motion, obstacle avoidance, and feedback.</span>
+            <span class="chips"><span class="chip">IMU</span><span class="chip">RF</span><span class="chip">C++</span></span>
+          </span>
+        </button>
+
+        <button class="story-card searchable" style="--card-a:#252036;--card-b:#0a0810;--glow:rgba(170,140,255,.4);--accent:#aa8cff"
+          data-category="project research neuromorphic silicon"
+          data-kicker="Device & Architecture Research"
+          data-title="Neuromorphic Hardware Modeling"
+          data-subtitle="Memristor behavior · synaptic plasticity · TCAD/Python"
+          data-body="Modeled memristor switching behavior and explored how nonvolatile device conductance can represent synaptic weights. Implemented conceptual Hebbian-learning and spike-timing-dependent-plasticity behavior, then studied the architectural benefit of colocating memory and computation.\n\nThe project connected device limits, analog state representation, and neuromorphic learning rules rather than treating the device model in isolation."
+          data-impact="Developed a device-to-architecture view of how emerging memory can reduce repeated data movement in conventional computing."
+          data-tags="Memristors,TCAD,Python,Hebbian Learning,STDP,Neuromorphic Computing">
+          <span class="card-topline"><span class="episode">Research · 08</span><span class="card-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span class="card-art"><span class="chip-art"></span></span>
+          <span class="card-content">
+            <h3>Neuromorphic Hardware Modeling</h3>
+            <span class="card-role">Memristors · TCAD · learning dynamics</span>
+            <span class="card-blurb">Connecting device switching, programmable conductance, and hardware models of synaptic learning.</span>
+            <span class="chips"><span class="chip">STDP</span><span class="chip">TCAD</span><span class="chip">Python</span></span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section reveal" id="publication" aria-labelledby="publication-title">
+      <div class="publication">
         <div>
-          <h3>Hardware Prototyping</h3>
-          <ul class="clean">
-            <li>PCB soldering, breadboarding</li>
-            <li>Circuit debugging</li>
-            <li>Oscilloscopes, signal generators</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Highlights (interview boosters) -->
-  <section id="highlights" class="reveal">
-    <div class="card">
-      <h2>Impact Highlights</h2>
-      <div class="grid cols-3">
-        <div class="project highlight">
-          <div class="metric">+15% <small>efficiency</small></div>
-          <p>Improved energy efficiency in electromechanical systems by optimizing capacitor designs.</p>
-          <div class="meta">Modine Manufacturing • 2024 Internship</div>
-        </div>
-        <div class="project highlight">
-          <div class="metric">+20% <small>lifespan</small></div>
-          <p>Extended component lifetime via analysis of failure modes and power distribution.</p>
-          <div class="meta">Modine Manufacturing • 2024 Internship</div>
-        </div>
-        <div class="project highlight">
-          <div class="metric">Tape‑out <small>ready</small></div>
-          <p>Dadda multiplier verified with post‑layout sims & power analysis to minimize delay and power.</p>
-          <div class="meta">Cadence Virtuoso • 45nm CMOS</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="reveal">
-    <div class="card">
-      <h2>Featured Projects</h2>
-
-      <div class="grid cols-2">
-        <div class="project">
-          <h3>8×8 Dadda Multiplier Design</h3>
-          <div class="meta">
-            45nm CMOS • Cadence Virtuoso • Verilog • SPICE • Layout Optimization
+          <span class="pub-badge">Published on IEEE Xplore · 2026</span>
+          <h3 id="publication-title">Ferroelectric Memristor-CMOS Crossbar Engine for Sobel Edge Detection</h3>
+          <p class="pub-copy">A transistor-level study of programmable, low-voltage, in-memory edge filtering. The architecture uses dual 3×3 crossbars, conductance-state enhancement, and a 7 nm differential readout to increase observable analog contrast without expanding the array.</p>
+          <p class="pub-authors"><strong>Amit Vardhan Suryadevara</strong>, Rishi Ramkumar, Maher Rizkalla, Ravi Mann, Robert E. Meagher</p>
+          <div class="pub-actions">
+            <button class="btn modal-trigger"
+              data-kicker="Publication · Compute-in-Memory Research"
+              data-title="Ferroelectric Memristor-CMOS Crossbar Engine for Sobel Edge Detection"
+              data-subtitle="Purdue University in Indianapolis · Published on IEEE Xplore · 2026"
+              data-body="The paper presents a hybrid ferroelectric-memristor/7 nm CMOS edge-detection engine. Separate 3×3 arrays generate horizontal and vertical responses; a low-voltage differential stage forms a signed analog edge indicator, followed by a compact inverter-based thresholding candidate.\n\nThe canonical Sobel coefficients are remapped from {0, ±1, ±2} to a conductance-state-enhanced set including ±3. This raises total absolute kernel magnitude from 8 to 12—an effective 1.5× coefficient-sum gain—while keeping the directional sign structure.\n\nThe paper explicitly limits its claims to nominal transistor-level, pre-layout simulation. Programming peripherals, post-layout extraction, PVT/Monte Carlo variation, and image-level software comparison remain future validation work."
+              data-impact="Nominal results at 0.8 V: 70–110 mV analog output swing, 175 µW transient-average engine power, ~160 nW subtractor power, and ~2.2 ns read latency."
+              data-tags="IEEE,Cadence Virtuoso,Memristor Crossbar,7 nm CMOS,Sobel,Analog MAC">
+              Read the research summary
+            </button>
+            <a class="btn primary" href="https://ieeexplore.ieee.org/document/11680915" target="_blank" rel="noopener noreferrer">View on IEEE Xplore ↗</a>
           </div>
-          <p>
-            Designed an 8×8 Dadda multiplier for RISC-class performance. Used 4:2 compressors, full/half adders;
-            validated with post-layout simulations and power analysis to minimize delay and power.
-          </p>
-          <a class="btn" href="https://github.com/nameisamit45" target="_blank" rel="noopener">View on GitHub</a>
         </div>
-
-        <div class="project">
-          <h3>Hand Gesture-Controlled Car</h3>
-          <div class="meta">
-            Arduino • MPU6050 • NRF24L01+ • C++ • AutoCAD
-          </div>
-          <p>
-            Built a wireless car controlled by hand-gesture IMU data sent over NRF24L01+. Firmware interprets
-            sensor data into PWM signals; added obstacle avoidance and LED feedback.
-          </p>
-          <a class="btn" href="https://github.com/nameisamit45" target="_blank" rel="noopener">View on GitHub</a>
-        </div>
-
-        <div class="project">
-          <h3>Neuromorphic Computing Hardware Modeling</h3>
-          <div class="meta">
-            TCAD Synopsis • FinFET • Neuromorphic Chips • Python
-          </div>
-          <p>
-            Modeled memristor behavior and switching limits. Implemented Hebbian learning &amp; STDP to
-            simulate synaptic plasticity; explored memory-logic co-location to address Von Neumann bottlenecks.
-          </p>
-          <a class="btn" href="https://github.com/nameisamit45" target="_blank" rel="noopener">View on GitHub</a>
-        </div>
-
-        <div class="project">
-          <h3>STM32-Based Hardware Design &amp; Development</h3>
-          <div class="meta">
-            KiCad 6 • STM32CubeIDE • STM32F103C8 • C/C++
-          </div>
-          <p>
-            Custom STM32 board with KiCad; configured peripherals in CubeIDE, used ST-Link for debugging,
-            and coordinated fabrication with JLCPCB.
-          </p>
-          <a class="btn" href="https://github.com/nameisamit45" target="_blank" rel="noopener">View on GitHub</a>
+        <div class="pub-metrics" aria-label="Publication results">
+          <div class="pub-metric"><strong>1.5×</strong><span>effective kernel gain</span></div>
+          <div class="pub-metric"><strong>0.8 V</strong><span>CMOS supply</span></div>
+          <div class="pub-metric"><strong>70–110</strong><span>mV analog swing</span></div>
+          <div class="pub-metric"><strong>2.2 ns</strong><span>read latency</span></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Resume (with universal motivation) -->
-  <section id="resume" class="reveal">
-    <div class="card">
-      <h2>Résumé</h2>
-      <div class="cta-row">
-        <a class="btn primary" href="Amit_Vardhan_Suryadevara_Resume.pdf" download>Download Full Résumé (PDF)</a>
+    <section class="section reveal" id="skills" aria-labelledby="skills-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">The engineering stack</p>
+          <h2 id="skills-title">From geometry to waveforms to silicon</h2>
+          <p class="section-note">Tools are grouped by the decisions they help make—not as a keyword wall.</p>
+        </div>
       </div>
-      <br>
-      <h3>Motivation</h3>
-      <p>
-        Motivated Electrical and VLSI Engineer with a passion for designing and building innovative hardware systems. Skilled in prototyping,
-        circuit design, and electromechanical integration, with a drive to deliver solutions that enhance performance, reliability,
-        and energy efficiency. I aim to contribute my technical expertise and creative problem‑solving abilities to forward‑thinking
-        projects that push the boundaries of technology and have meaningful impact.
-      </p>
-
-      <h3>Education</h3>
-      <ul class="clean">
-        <li><strong>Purdue University</strong> — BS in Electrical Engineering (GPA 3.43/4), May 2025</li>
-        <li><strong>Purdue University</strong> — MS in Electrical Engineering (VLSI, 4/4), Expected May 2026</li>
-      </ul>
-
-      <h3>Honors & Awards</h3>
-      <p>Dave & Marsha Meyer ECE Undergraduate Teaching Assistant Award (2024–2025).</p>
-
-      <h3>Experience</h3>
-      <ul class="clean">
-        <li><strong>Electromechanical Engineering Intern – Modine Manufacturing</strong> (Jun–Aug 2024): Improved energy efficiency (+15%) and component lifespan (+20%) by optimizing capacitor designs; conducted failure-mode analysis for power distribution.</li>
-        <li><strong>Teaching Assistant – Electrical Systems</strong> (Aug 2024–May 2025): Guided students on circuit analysis and labs involving sensors, motors, and basic electronics; supported debugging and troubleshooting.</li>
-      </ul>
-
-      <h3>Key Skills</h3>
-      <table style="width:100%; border-collapse: collapse; color: var(--ink);">
-        <tr>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Analog Circuit Design & Layout</td>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Cadence Virtuoso, SPICE, Layout Optimization</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Programming Languages</td>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Python, C/C++, Shell, Verilog, LABVIEW</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">CAD & Simulation</td>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">AutoCAD, SolidWorks, LTSpice, MATLAB, ModelSim, PSpice, KiCad</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Digital Design & Verification</td>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Verilog/VHDL (ASIC/FPGA)</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Hardware Prototyping</td>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">PCB Soldering, Breadboarding, Oscilloscopes, Signal Generators</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">Protocols & Interfaces</td>
-          <td style="padding: 8px; border: 1px solid var(--stroke);">I2C, SPI, UART, SCPI</td>
-        </tr>
-      </table>
-
-      <br>
-      <div class="pill">Open to internships & new‑grad roles</div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="reveal">
-    <div class="card">
-      <h2>Get in Touch</h2>
-      <p>
-        I'm open to new opportunities and collaborations. Reach out via email, phone, or connect with me on LinkedIn.
-      </p>
-      <p><strong>Phone:</strong> <a href="tel:3175511176">317-551-1176</a></p>
-      <p><strong>Email:</strong> <a href="mailto:amitdvea45@gmail.com">amitdvea45@gmail.com</a></p>
-      <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/amit-suryadevara" target="_blank">linkedin.com/in/amit-suryadevara</a></p>
-      <div class="cta-row">
-        <a class="btn primary" href="mailto:amitdvea45@gmail.com">Send a Message</a>
-        <a class="btn" href="https://github.com/nameisamit45" target="_blank" rel="noopener">GitHub • @nameisamit45</a>
+      <div class="signal-chain">
+        <article class="stack-card">
+          <span class="stack-index">01 / MODEL</span>
+          <h3>Power &amp; thermal</h3>
+          <div class="stack-list"><span>SIMetrix</span><span>Ansys Q3D</span><span>MFIT</span><span>Foster/Cauer</span><span>MATLAB</span><span>LTspice</span></div>
+        </article>
+        <article class="stack-card">
+          <span class="stack-index">02 / AUTOMATE</span>
+          <h3>Data &amp; scripting</h3>
+          <div class="stack-list"><span>Python</span><span>NumPy</span><span>Pandas</span><span>SciPy</span><span>Matplotlib</span><span>OpenPyXL</span><span>Tcl</span></div>
+        </article>
+        <article class="stack-card">
+          <span class="stack-index">03 / VERIFY</span>
+          <h3>RTL &amp; verification</h3>
+          <div class="stack-list"><span>SystemVerilog</span><span>Xcelium</span><span>SimVision</span><span>SVA</span><span>Constrained random</span><span>Coverage</span></div>
+        </article>
+        <article class="stack-card">
+          <span class="stack-index">04 / IMPLEMENT</span>
+          <h3>Silicon &amp; CAD</h3>
+          <div class="stack-list"><span>Cadence Virtuoso</span><span>Design Compiler</span><span>Innovus</span><span>PrimeTime</span><span>SolidWorks</span><span>AutoCAD</span><span>KiCad</span></div>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="section reveal" id="journey" aria-labelledby="journey-title">
+      <div class="journey-grid">
+        <div class="journey-intro">
+          <p class="section-kicker">Trajectory</p>
+          <h2 id="journey-title">A hardware path built across scales.</h2>
+          <p>My work has moved from components and boards, through transistor-level circuits and digital implementation, to module-level switching and thermal behavior. The constant is a measurement-first approach: define the signal, automate the check, and state the limits.</p>
+          <a class="btn" href="mailto:amitdeva45@gmail.com?subject=Engineering%20opportunity%20for%20Amit">Discuss an opportunity</a>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item" style="--dot:#3bc8ff">
+            <span class="timeline-time">Expected Dec 2026</span>
+            <h3>M.S. Electrical &amp; Computer Engineering</h3>
+            <p class="timeline-role">Purdue University Indianapolis · VLSI &amp; SoC focus · GPA 3.86</p>
+            <p class="timeline-desc">Graduate work across linear systems, VLSI/SoC design, verification, and advanced ECE topics.</p>
+          </article>
+          <article class="timeline-item" style="--dot:#ffac32">
+            <span class="timeline-time">Jan–Aug 2026</span>
+            <h3>Product Design Intern</h3>
+            <p class="timeline-role">onsemi · Automotive Power Modules · Scottsdale, Arizona</p>
+            <p class="timeline-desc">Power-module CAD, SiC switching analysis, thermal modeling, Python automation, and junction-temperature estimation.</p>
+          </article>
+          <article class="timeline-item" style="--dot:#aa8cff">
+            <span class="timeline-time">2024–2026</span>
+            <h3>Teaching &amp; Grading</h3>
+            <p class="timeline-role">Purdue University · ECE 30100, 20001, 20501, 20502</p>
+            <p class="timeline-desc">UTA, GTA, and grader responsibilities spanning circuits, electronics, labs, feedback, and student support.</p>
+          </article>
+          <article class="timeline-item" style="--dot:#6ee7a8">
+            <span class="timeline-time">May 2025</span>
+            <h3>B.S. Electrical Engineering</h3>
+            <p class="timeline-role">Purdue University Indianapolis · GPA 3.43 · Semester Honors</p>
+            <p class="timeline-desc">Foundation across circuits, electronics, embedded systems, digital design, VLSI, and electromechanical integration.</p>
+          </article>
+          <article class="timeline-item" style="--dot:#ff6d7a">
+            <span class="timeline-time">Jun–Aug 2024</span>
+            <h3>Electromechanical Engineering Intern</h3>
+            <p class="timeline-role">Modine Manufacturing</p>
+            <p class="timeline-desc">Capacitor optimization, component reliability, power distribution, and failure-mode analysis.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="awards" aria-labelledby="awards-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Recognition</p>
+          <h2 id="awards-title">Awards &amp; impact</h2>
+        </div>
+      </div>
+      <div class="award-grid">
+        <article class="award"><div class="award-num">01</div><h3>Dave &amp; Marsha Meyer ECE UTA Award</h3><p>Recognized for undergraduate teaching support in Purdue ECE, 2024–2025.</p></article>
+        <article class="award"><div class="award-num">02</div><h3>Best Undergraduate Teaching Assistant</h3><p>Recognition for effective course support, technical explanation, and student mentorship.</p></article>
+        <article class="award"><div class="award-num">03</div><h3>Dunipace Outstanding Senior Design Award</h3><p>Recognition connected to senior-design engineering work and project execution.</p></article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="contact" aria-labelledby="contact-title">
+      <div class="contact">
+        <div>
+          <p class="section-kicker">Next collaboration</p>
+          <h2 id="contact-title">Let’s build hardware that survives the waveform.</h2>
+          <p>I’m completing my M.S. in ECE in December 2026 and exploring new-grad work across product engineering, power electronics, analog/mixed-signal CAD, RTL verification, and silicon implementation.</p>
+        </div>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:amitdeva45@gmail.com"><strong>Email</strong><span>amitdeva45@gmail.com ↗</span></a>
+          <a class="contact-link" href="https://linkedin.com/in/amit-suryadevara" target="_blank" rel="noopener"><strong>LinkedIn</strong><span>Professional profile ↗</span></a>
+          <a class="contact-link" href="https://github.com/nameisamit45" target="_blank" rel="noopener"><strong>GitHub</strong><span>@nameisamit45 ↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    © 2025 Amit Vardhan Suryadevara. All rights reserved.
+    <span>© <span id="year"></span> Amit Vardhan Suryadevara</span>
+    <span>Designed around signals, systems, and the stories behind them.</span>
+    <a href="#home">Back to top ↑</a>
   </footer>
 
+  <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel" role="document">
+      <div class="modal-hero">
+        <button class="icon-btn modal-close" id="modalClose" aria-label="Close details">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+        <div class="modal-kicker" id="modalKicker"></div>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+      </div>
+      <div class="modal-body">
+        <p id="modalBody"></p>
+        <div class="modal-impact"><strong>Result</strong><span id="modalImpact"></span></div>
+        <div class="chips modal-tags" id="modalTags"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search portfolio">
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Search thermal, SystemVerilog, Cadence…" aria-label="Search projects and experience">
+        <span class="search-hint">ESC</span>
+      </div>
+      <div class="search-results" id="searchResults" aria-live="polite"></div>
+    </div>
+  </div>
+
   <script>
-    // Reveal on scroll
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
-    }, {threshold: 0.12});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const topbar = document.getElementById('topbar');
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.getElementById('menuToggle');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const setScrolled = () => topbar.classList.toggle('scrolled', window.scrollY > 24);
+    setScrolled();
+    window.addEventListener('scroll', setScrolled, { passive: true });
+
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('mobile-open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    document.querySelectorAll('.rail-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rail = document.getElementById(btn.dataset.rail);
+        const amount = Math.min(rail.clientWidth * .78, 560) * Number(btn.dataset.dir);
+        rail.scrollBy({ left: amount, behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+    });
+
+    const projectCards = [...document.querySelectorAll('#projectRail .story-card')];
+    document.querySelectorAll('.filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
+        btn.classList.add('active');
+        const key = btn.dataset.filter;
+        projectCards.forEach(card => card.classList.toggle('is-hidden', key !== 'all' && !card.dataset.category.includes(key)));
+        document.getElementById('projectRail').scrollTo({ left: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+    });
+
+    const modal = document.getElementById('detailModal');
+    const modalClose = document.getElementById('modalClose');
+    let lastFocus = null;
+    function openModal(source) {
+      lastFocus = document.activeElement;
+      document.getElementById('modalKicker').textContent = source.dataset.kicker || '';
+      document.getElementById('modalTitle').textContent = source.dataset.title || '';
+      document.getElementById('modalSubtitle').textContent = source.dataset.subtitle || '';
+      document.getElementById('modalBody').textContent = (source.dataset.body || '').replace(/\\n/g, '\n');
+      document.getElementById('modalImpact').textContent = source.dataset.impact || '';
+      const tagRoot = document.getElementById('modalTags');
+      tagRoot.replaceChildren(...(source.dataset.tags || '').split(',').filter(Boolean).map(tag => {
+        const el = document.createElement('span');
+        el.className = 'chip';
+        el.textContent = tag.trim();
+        return el;
+      }));
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modalClose.focus();
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    document.querySelectorAll('.story-card, .modal-trigger').forEach(card => card.addEventListener('click', () => openModal(card)));
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+    const searchable = [...document.querySelectorAll('.searchable, .modal-trigger')];
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    function renderSearch(term = '') {
+      const q = term.trim().toLowerCase();
+      const matches = searchable.filter(item => !q || [
+        item.dataset.title, item.dataset.subtitle, item.dataset.category, item.dataset.tags, item.dataset.body
+      ].join(' ').toLowerCase().includes(q)).slice(0, 12);
+      if (!matches.length) {
+        searchResults.innerHTML = '<div class="search-empty">No matching work found. Try a tool, domain, or project name.</div>';
+        return;
+      }
+      searchResults.replaceChildren(...matches.map(item => {
+        const result = document.createElement('button');
+        result.className = 'search-result';
+        result.innerHTML = '<span><strong></strong><span></span></span><span>Open →</span>';
+        result.querySelector('strong').textContent = item.dataset.title;
+        result.querySelector('span span').textContent = item.dataset.kicker;
+        result.addEventListener('click', () => {
+          closeSearch();
+          openModal(item);
+        });
+        return result;
+      }));
+    }
+    function openSearch() {
+      searchOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderSearch('');
+      requestAnimationFrame(() => searchInput.focus());
+    }
+    function closeSearch() {
+      searchOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      searchInput.value = '';
+      document.getElementById('searchOpen').focus();
+    }
+    document.getElementById('searchOpen').addEventListener('click', openSearch);
+    searchOverlay.addEventListener('click', e => { if (e.target === searchOverlay) closeSearch(); });
+    searchInput.addEventListener('input', e => renderSearch(e.target.value));
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('open')) closeModal();
+        else if (searchOverlay.classList.contains('open')) closeSearch();
+      }
+      if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName) && !modal.classList.contains('open')) {
+        e.preventDefault();
+        openSearch();
+      }
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const anchors = [...navLinks.querySelectorAll('a')];
+    const activeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        anchors.forEach(link => link.setAttribute('aria-current', String(link.getAttribute('href') === '#' + entry.target.id)));
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    sections.forEach(section => activeObserver.observe(section));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    if (!reducedMotion) {
+      const canvas = document.getElementById('signalCanvas');
+      const ctx = canvas.getContext('2d');
+      let width = 0, height = 0, t = 0;
+      const resize = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      resize();
+      window.addEventListener('resize', resize);
+      function drawSignal() {
+        ctx.clearRect(0, 0, width, height);
+        const y = height * .72;
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(59,200,255,.22)';
+        ctx.lineWidth = 1.25;
+        for (let x = 0; x <= width * .67; x += 5) {
+          const pulse = (x + t) % 260;
+          const level = pulse > 46 && pulse < 135 ? -34 : 0;
+          const ripple = Math.sin((x + t) * .038) * 2.2;
+          const yy = y + level + ripple;
+          if (x === 0) ctx.moveTo(x, yy); else ctx.lineTo(x, yy);
+        }
+        ctx.stroke();
+        const dotX = (t * 1.5) % (width * .64);
+        const pulse = (dotX + t) % 260;
+        const dotY = y + (pulse > 46 && pulse < 135 ? -34 : 0) + Math.sin((dotX + t) * .038) * 2.2;
+        const grad = ctx.createRadialGradient(dotX, dotY, 0, dotX, dotY, 18);
+        grad.addColorStop(0, 'rgba(255,172,50,.9)');
+        grad.addColorStop(1, 'rgba(255,172,50,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(dotX, dotY, 18, 0, Math.PI * 2);
+        ctx.fill();
+        t += .9;
+        requestAnimationFrame(drawSignal);
+      }
+      drawSignal();
+    }
   </script>
 </body>
 </html>
